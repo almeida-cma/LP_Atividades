@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatísticas de Idade e Sexo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Estatísticas de Idade e Sexo</h2>
+
+    <script>
+        function calcularEstatisticas() {
+            var continuar = true;
+            var idades = [];
+            var mulheres = [];
+            var homens = [];
+
+            while (continuar) {
+                var idade = parseInt(prompt('Digite a idade:'));
+                var sexo = prompt('Digite o sexo (M para masculino, F para feminino):').toUpperCase();
+
+                idades.push(idade);
+
+                if (sexo === 'F') {
+                    mulheres.push({ idade: idade });
+                } else if (sexo === 'M') {
+                    homens.push({ idade: idade });
+                }
+
+                continuar = confirm('Deseja continuar?');
+            }
+
+            // Calcular estatísticas
+            var maiorIdade = Math.max(...idades);
+            var menorIdade = Math.min(...idades);
+
+            var mulherMaisJovem = mulheres.reduce((min, mulher) => (mulher.idade < min.idade) ? mulher : min, mulheres[0]);
+            var homemMaisVelho = homens.reduce((max, homem) => (homem.idade > max.idade) ? homem : max, homens[0]);
+
+            var mediaIdadeMulheres = mulheres.length > 0 ? mulheres.reduce((acc, mulher) => acc + mulher.idade, 0) / mulheres.length : 0;
+
+            // Exibir os resultados
+            alert('Maior idade: ' + maiorIdade +
+                  '\nMenor idade: ' + menorIdade +
+                  '\nMulher mais jovem: ' + mulherMaisJovem.idade +
+                  '\nHomem mais velho: ' + homemMaisVelho.idade +
+                  '\nMédia de idade entre as mulheres: ' + mediaIdadeMulheres);
+        }
+
+        // Chamar a função ao carregar a página
+        window.onload = function() {
+            calcularEstatisticas();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Passagem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            margin-bottom: 16px;
+        }
+
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Calculadora de Passagem</h2>
+
+    <label for="quilometros">Quantidade de Quilômetros da Viagem:</label>
+    <input type="number" id="quilometros" placeholder="Digite a distância da viagem em KM">
+
+    <button onclick="calcularPrecoPassagem()">Calcular Preço da Passagem</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcularPrecoPassagem() {
+            // Obter o valor digitado pelo usuário
+            var quilometros = parseFloat(document.getElementById('quilometros').value);
+
+            // Calcular o preço da passagem de acordo com a tabela
+            var preco;
+
+            if (quilometros <= 50) {
+                preco = quilometros * 0.65;
+            } else if (quilometros <= 100) {
+                preco = quilometros * 0.90;
+            } else if (quilometros <= 200) {
+                preco = quilometros * 1.00;
+            } else {
+                preco = quilometros * 1.50;
+            }
+
+            // Exibir o resultado
+            var resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = 'Preço da passagem para ' + quilometros + ' KM: R$ ' + preco.toFixed(2);
+        }
+    </script>
+</body>
+</html>

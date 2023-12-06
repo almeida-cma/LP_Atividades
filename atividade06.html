@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem de Números Pares e Ímpares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Contagem de Números Pares e Ímpares</h2>
+
+    <script>
+        function contarParesImpares() {
+            var numeros = [];
+
+            // Solicitar ao usuário inserir 10 números
+            for (var i = 1; i <= 10; i++) {
+                var numero = parseInt(prompt("Digite o número " + i + ":"));
+                numeros.push(numero);
+            }
+
+            // Contar números pares e ímpares
+            var pares = 0;
+            var impares = 0;
+
+            for (var i = 0; i < numeros.length; i++) {
+                if (numeros[i] % 2 === 0) {
+                    pares++;
+                } else {
+                    impares++;
+                }
+            }
+
+            // Exibir o resultado
+            alert('Números Pares: ' + pares + '\nNúmeros Ímpares: ' + impares);
+        }
+
+        // Chamar a função ao carregar a página
+        window.onload = function() {
+            contarParesImpares();
+        };
+    </script>
+</body>
+</html>

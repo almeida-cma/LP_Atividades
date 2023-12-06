@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Números</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sorteio de Números</h2>
+
+    <script>
+        function sortearNumeros() {
+            var numerosSorteados = [];
+            var acimaDe10 = 0;
+            var divisiveisPor5 = 0;
+
+            // Realizar o sorteio de 20 números
+            for (var i = 0; i < 20; i++) {
+                var numero = Math.floor(Math.random() * 21); // Gera números aleatórios entre 0 e 20
+                numerosSorteados.push(numero);
+
+                // Verificar condições
+                if (numero > 10) {
+                    acimaDe10++;
+                }
+
+                if (numero % 5 === 0) {
+                    divisiveisPor5++;
+                }
+            }
+
+            // Exibir os resultados
+            alert('Números Sorteados: ' + numerosSorteados.join(', ') +
+                  '\nQuantidade acima de 10: ' + acimaDe10 +
+                  '\nQuantidade divisíveis por 5: ' + divisiveisPor5);
+        }
+
+        // Chamar a função ao carregar a página
+        window.onload = function() {
+            sortearNumeros();
+        };
+    </script>
+</body>
+</html>

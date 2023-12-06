@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro Automático</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        #cronometro {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Cronômetro Automático</h2>
+    <div id="cronometro"></div>
+
+    <script>
+        function iniciarCronometro(inicio, fim, passo) {
+            var cronometroDiv = document.getElementById('cronometro');
+
+            function exibirContagem() {
+                cronometroDiv.innerText = 'Contagem: ' + inicio;
+                inicio += passo;
+
+                if (inicio <= fim) {
+                    setTimeout(exibirContagem, 1000);
+                }
+            }
+
+            exibirContagem();
+        }
+
+        // Solicitar valores do usuário
+        var inicio = parseInt(prompt("Digite o valor inicial:"));
+        var fim = parseInt(prompt("Digite o valor final:"));
+        var passo = parseInt(prompt("Digite o valor do passo:"));
+
+        // Validar os valores
+        if (isNaN(inicio) || isNaN(fim) || isNaN(passo)) {
+            alert('Por favor, insira valores válidos.');
+        } else {
+            // Iniciar o cronômetro automaticamente
+            iniciarCronometro(inicio, fim, passo);
+        }
+    </script>
+</body>
+</html>
+
+
+

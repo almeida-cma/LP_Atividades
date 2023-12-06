@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatísticas de Nome e Idade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Estatísticas de Nome e Idade</h2>
+
+    <div>
+        <button onclick="coletarInformacoes()">Coletar Informações</button>
+        <button onclick="calcularEstatisticas()">Calcular Estatísticas</button>
+    </div>
+
+    <script>
+        var pessoas = [];
+
+        function coletarInformacoes() {
+            for (var i = 0; i < 10; i++) {
+                var nome = prompt('Digite o nome da pessoa ' + (i + 1) + ':');
+                var idade = parseInt(prompt('Digite a idade de ' + nome + ':'));
+                
+                pessoas.push({ nome: nome, idade: idade });
+            }
+        }
+
+        function calcularEstatisticas() {
+            if (pessoas.length === 0) {
+                alert('Por favor, colete as informações primeiro.');
+                return;
+            }
+
+            var pessoaMaisVelha = pessoas.reduce((max, pessoa) => (pessoa.idade > max.idade) ? pessoa : max, pessoas[0]);
+            var pessoaMaisJovem = pessoas.reduce((min, pessoa) => (pessoa.idade < min.idade) ? pessoa : min, pessoas[0]);
+            var somaIdades = pessoas.reduce((acc, pessoa) => acc + pessoa.idade, 0);
+            var mediaIdade = somaIdades / pessoas.length;
+
+            alert('Pessoa mais velha: ' + pessoaMaisVelha.nome +
+                  '\nPessoa mais jovem: ' + pessoaMaisJovem.nome +
+                  '\nMédia de idade: ' + mediaIdade);
+        }
+    </script>
+</body>
+</html>

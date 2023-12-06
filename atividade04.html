@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Área de Terreno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            margin-bottom: 16px;
+        }
+
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Calculadora de Área de Terreno</h2>
+
+    <form>
+        <label for="comprimento">Comprimento do Terreno (m):</label>
+        <input type="number" id="comprimento" placeholder="Digite o comprimento">
+
+        <label for="largura">Largura do Terreno (m):</label>
+        <input type="number" id="largura" placeholder="Digite a largura">
+
+        <button type="button" onclick="calcularArea()">Calcular Área</button>
+    </form>
+
+    <script>
+        function calcularArea() {
+            // Obter os valores dos campos
+            var comprimento = parseFloat(document.getElementById('comprimento').value);
+            var largura = parseFloat(document.getElementById('largura').value);
+
+            // Calcular a área do terreno
+            var area = comprimento * largura;
+
+            // Determinar a classificação do terreno
+            var classificacao;
+
+            if (area <= 125) {
+                classificacao = 'TERRENO PADRÃO';
+            } else if (area <= 250) {
+                classificacao = 'TERRENO INTERMEDIÁRIO';
+            } else if (area <= 350) {
+                classificacao = 'TERRENO LUXO';
+            } else {
+                classificacao = 'TERRENO VIP';
+            }
+
+            // Exibir o resultado em uma janela
+            alert('Área total do terreno: ' + area.toFixed(2) + 'm²\nClassificação: ' + classificacao);
+        }
+    </script>
+</body>
+</html>

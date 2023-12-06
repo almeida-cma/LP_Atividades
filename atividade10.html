@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro Inteligente com Controles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            margin-bottom: 16px;
+        }
+
+        button {
+            padding: 8px;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+
+        #cronometro {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Cronômetro Inteligente com Controles</h2>
+
+    <label for="inicio">Início da Contagem:</label>
+    <input type="number" id="inicio" placeholder="Digite o valor inicial">
+
+    <label for="fim">Final da Contagem:</label>
+    <input type="number" id="fim" placeholder="Digite o valor final">
+
+    <label for="passo">Passo da Contagem:</label>
+    <input type="number" id="passo" placeholder="Digite o valor do passo">
+
+    <button onclick="iniciarCronometro()">Iniciar</button>
+    <button onclick="pararCronometro()">Parar</button>
+    <button onclick="resetarCronometro()">Resetar</button>
+
+    <div id="cronometro"></div>
+
+    <script>
+        var interval;
+        var cronometroDiv = document.getElementById('cronometro');
+        var inicioInput = document.getElementById('inicio');
+        var fimInput = document.getElementById('fim');
+        var passoInput = document.getElementById('passo');
+
+        function iniciarCronometro() {
+            var inicio = parseInt(inicioInput.value);
+            var fim = parseInt(fimInput.value);
+            var passo = parseInt(passoInput.value);
+
+            if (isNaN(inicio) || isNaN(fim) || isNaN(passo)) {
+                alert('Por favor, insira valores válidos.');
+                return;
+            }
+
+            var i = inicio;
+            interval = setInterval(function() {
+                cronometroDiv.innerText = 'Contagem: ' + i;
+
+                if (i >= fim) {
+                    clearInterval(interval);
+                }
+
+                i += passo;
+            }, 1000);
+        }
+
+        function pararCronometro() {
+            clearInterval(interval);
+        }
+
+        function resetarCronometro() {
+            cronometroDiv.innerText = '';
+            inicioInput.value = '';
+            fimInput.value = '';
+            passoInput.value = '';
+            clearInterval(interval);
+        }
+    </script>
+</body>
+</html>
